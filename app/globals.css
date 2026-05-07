@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent:      #283186;
+  --color-accent-dim:  rgba(40,49,134,0.15);
+  --color-dark:        #0a0a0a;
+  --color-card:        #111111;
+  --color-border:      #1e1e1e;
+  --color-muted:       #555555;
+  --color-white:       #ffffff;
+
+  --font-display: var(--font-bebas), 'Bebas Neue', sans-serif;
+  --font-sans:    var(--font-inter),  Inter,         sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── CSS custom properties ─────────────────── */
+html, html.dark {
+  --bg-page:    #0a0a0a;
+  --bg-card:    #111111;
+  --bg-footer:  #050505;
+  --border-col: #1e1e1e;
+  --text-body:  #ffffff;
+  --text-muted: #888888;
+  --text-dim:   #555555;
+  --nav-blur:   rgba(10,10,10,0.95);
 }
+
+html.light {
+  --bg-page:    #f2f1ed;
+  --bg-card:    #ffffff;
+  --bg-footer:  #e5e4df;
+  --border-col: #d8d7d0;
+  --text-body:  #1a1a1a;
+  --text-muted: #666666;
+  --text-dim:   #888888;
+  --nav-blur:   rgba(242,241,237,0.95);
+}
+
+/* ── Base ────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-body);
+  font-family: var(--font-inter), Inter, sans-serif;
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+
+/* Custom cursor — hide default on pointer devices */
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar              { width: 4px; }
+::-webkit-scrollbar-track        { background: var(--bg-page); }
+::-webkit-scrollbar-thumb        { background: #283186; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover  { background: #3a4db5; }
+
+/* Clip-path industrial button */
+.btn-clip {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+}
+
+/* Text mask reveal animation */
+.mask-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.mask-reveal.in {
+  clip-path: inset(0 0% 0 0);
 }
