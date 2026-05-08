@@ -4,24 +4,10 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import Image from "next/image";
 
 const STATS = [
-  { value: 70, suffix: "+", label: "Años de historia" },
-  { value: 3,  suffix: "ª", label: "Generaciones" },
-  { value: 500, suffix: "+", label: "Productos" },
+  { value: "70+",  label: "Años de historia"  },
+  { value: "3ª",   label: "Generaciones"       },
+  { value: "500+", label: "Productos"          },
 ];
-
-function Counter({ value, suffix }: { value: number; suffix: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end center"] });
-
-  const display = useTransform(scrollYProgress, [0, 1], [0, value]);
-
-  return (
-    <div ref={ref}>
-      <motion.span>{display.get()}</motion.span>
-      {suffix}
-    </div>
-  );
-}
 
 export default function Nosotros() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -30,19 +16,18 @@ export default function Nosotros() {
     offset: ["start end", "end start"],
   });
 
-  const imgX    = useTransform(scrollYProgress, [0, 0.6], ["60px", "0px"]);
-  const imgOp   = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
-  const textX   = useTransform(scrollYProgress, [0, 0.5], ["-40px", "0px"]);
-  const textOp  = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
+  const imgX  = useTransform(scrollYProgress, [0, 0.6], ["60px", "0px"]);
+  const imgOp = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
+  const textX = useTransform(scrollYProgress, [0, 0.5], ["-40px", "0px"]);
+  const textOp = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
 
   return (
     <section id="nosotros" ref={sectionRef} className="py-28 bg-[#0b0b0b]">
       <div className="max-w-7xl mx-auto px-6">
 
-        {/* Stats bar */}
+        {/* Stats — minimal, just numbers */}
         <motion.div
-          className="grid grid-cols-3 gap-4 mb-24 p-8"
-          style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)" }}
+          className="grid grid-cols-3 gap-4 mb-28"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -52,7 +37,7 @@ export default function Nosotros() {
             <div
               key={s.label}
               className="text-center"
-              style={i < 2 ? { borderRight: "1px solid rgba(255,255,255,0.08)" } : {}}
+              style={i < 2 ? { borderRight: "1px solid rgba(255,255,255,0.06)" } : {}}
             >
               <div
                 className="text-[#283186] mb-2"
@@ -62,9 +47,18 @@ export default function Nosotros() {
                   lineHeight: 1,
                 }}
               >
-                {s.value}{s.suffix}
+                {s.value}
               </div>
-              <div className="text-xs tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
+              <div
+                style={{
+                  fontFamily: "'Satoshi', sans-serif",
+                  fontSize: "0.65rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.3em",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.3)",
+                }}
+              >
                 {s.label}
               </div>
             </div>
@@ -89,13 +83,19 @@ export default function Nosotros() {
               Más de 70 años<br />
               <span className="text-[#283186]">sirviendo</span> a Venezuela
             </h2>
-            <p className="text-lg leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
+            <p
+              className="text-lg leading-relaxed mb-6"
+              style={{ fontFamily: "'Satoshi', sans-serif", color: "rgba(255,255,255,0.55)" }}
+            >
               Somos una ferretería familiar venezolana con más de 70 años de historia.
               Nacimos en Tovar con el sueño de nuestro bisabuelo, crecimos bajo el mando
               de nuestro abuelo, y hoy la tercera generación lleva ese mismo compromiso
               a Mérida.
             </p>
-            <p className="text-lg leading-relaxed mb-10" style={{ color: "rgba(255,255,255,0.35)" }}>
+            <p
+              className="text-lg leading-relaxed mb-10"
+              style={{ fontFamily: "'Satoshi', sans-serif", color: "rgba(255,255,255,0.32)" }}
+            >
               No somos solo una ferretería — somos el lugar donde los vecinos, los
               arquitectos y los constructores encuentran no solo los materiales que
               necesitan, sino también el consejo honesto de alguien que conoce el oficio.
@@ -106,24 +106,27 @@ export default function Nosotros() {
                 href="https://wa.me/584126406493"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-clip bg-[#283186] text-white px-8 py-4 text-sm tracking-widest uppercase hover:bg-[#3a4db5] transition-colors"
+                className="cta-glass"
               >
-                Escríbenos
+                <div className="cta-glass__bg" />
+                <div className="cta-glass__glow" />
+                <div className="cta-glass__inner">
+                  <div className="cta-glass__icon">
+                    <svg width="14" height="8" viewBox="0 0 18 10" fill="none">
+                      <path d="M12 10C12 9.47 12.55 8.68 13.11 8.01C13.82 7.16 14.68 6.41 15.66 5.84C16.39 5.41 17.28 5 18 5M18 5C17.28 5 16.39 4.59 15.66 4.16C14.68 3.59 13.82 2.84 13.11 1.99C12.55 1.32 12 0.53 12 0M18 5L0 5" stroke="white" strokeWidth="1.5"/>
+                    </svg>
+                  </div>
+                  <span>Escríbenos</span>
+                </div>
               </a>
               <a
                 href="https://www.instagram.com/globalferreteria_"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 transition-colors text-sm group"
-                style={{ color: "rgba(255,255,255,0.4)" }}
+                className="flex items-center gap-2 group transition-colors text-sm"
+                style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Satoshi', sans-serif" }}
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  className="w-5 h-5 group-hover:stroke-[#283186] transition-colors"
-                >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4 group-hover:stroke-[#283186] transition-colors">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                   <circle cx="12" cy="12" r="4.5"/>
                   <circle cx="17.5" cy="6.5" r="1" fill="currentColor" strokeWidth="0"/>
@@ -133,46 +136,47 @@ export default function Nosotros() {
             </div>
           </motion.div>
 
-          {/* Right — image */}
-          <motion.div
-            style={{ x: imgX, opacity: imgOp }}
-            className="relative"
-          >
-            <div
-              className="relative overflow-hidden"
-              style={{ height: 520 }}
-            >
+          {/* Right — image (magazine style, no border-radius) */}
+          <motion.div style={{ x: imgX, opacity: imgOp }} className="relative">
+            <div className="relative overflow-hidden" style={{ height: 560 }}>
               <Image
                 src="/mostrador.png"
-                alt="Global Ferretería — Nuestro equipo"
+                alt="Global Ferretería — Local"
                 fill
                 className="object-cover"
               />
+              {/* Blue accent line left */}
               <div
-                className="absolute inset-0"
-                style={{ boxShadow: "inset 0 0 0 2px #283186" }}
+                className="absolute left-0 top-0 bottom-0"
+                style={{ width: 3, background: "#283186" }}
               />
             </div>
 
-            {/* Floating info card */}
-            <motion.div
-              className="absolute -bottom-6 -left-6 p-6 max-w-[240px]"
-              style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.08)" }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.6 }}
+            {/* Editorial badge bottom-left */}
+            <div
+              className="absolute -bottom-5 left-4 px-5 py-3"
+              style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.07)" }}
             >
               <div
-                className="text-[#283186] mb-1"
-                style={{ fontFamily: "var(--font-bebas)", fontSize: "2.5rem", lineHeight: 1 }}
+                className="text-[#283186]"
+                style={{ fontFamily: "var(--font-bebas)", fontSize: "2rem", lineHeight: 1 }}
               >
                 Desde 1950
               </div>
-              <div className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.4)" }}>
-                Tres generaciones. Un mismo compromiso.
+              <div
+                style={{
+                  fontFamily: "'Satoshi', sans-serif",
+                  fontSize: "0.6rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.25em",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.35)",
+                  marginTop: "0.2rem",
+                }}
+              >
+                Tres generaciones · Un compromiso
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>

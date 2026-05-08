@@ -1,4 +1,7 @@
 import CustomCursor from "@/components/CustomCursor";
+import Loader from "@/components/Loader";
+import Markers from "@/components/Markers";
+import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Historia from "@/components/Historia";
@@ -10,8 +13,10 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
+    <SmoothScroll>
       <CustomCursor />
+      <Loader />
+      <Markers />
       <Navbar />
       <main>
         <Hero />
@@ -22,6 +27,6 @@ export default function Home() {
         <Contacto />
       </main>
       <Footer />
-    </>
+    </SmoothScroll>
   );
 }

@@ -17,11 +17,7 @@ export default function Productos() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section
-      id="productos"
-      className="py-24"
-      style={{ background: "linear-gradient(to bottom, #f0e4d0 0px, #f5f3ef 100px, #f5f3ef 100%)" }}
-    >
+    <section id="productos" className="py-24 bg-[#0b0b0b]">
 
       {/* ── Header ── */}
       <motion.div
@@ -34,17 +30,17 @@ export default function Productos() {
         <p className="text-[#283186] text-sm tracking-[0.3em] uppercase mb-3">Catálogo</p>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <h2
-            className="text-[#0a0a0a] leading-none"
+            className="text-white leading-none"
             style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(3rem, 7vw, 6rem)" }}
           >
             Productos<br />Destacados
           </h2>
           <div className="flex flex-col items-start md:items-end gap-2">
-            <p className="text-[#777] max-w-xs text-sm leading-relaxed md:text-right">
+            <p className="text-white/40 max-w-xs text-sm leading-relaxed md:text-right">
               Una selección de lo que encontrarás en nuestro local.
               Escríbenos por WhatsApp para más información.
             </p>
-            <span className="text-[#bbb] text-[10px] tracking-[0.3em] uppercase">
+            <span className="text-white/25 text-[10px] tracking-[0.3em] uppercase">
               ← arrastra →
             </span>
           </div>
@@ -68,10 +64,10 @@ export default function Productos() {
           {PRODUCTS.map((p, i) => (
             <div
               key={p.src}
-              className="relative flex-shrink-0 overflow-hidden group shadow-[0_2px_16px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_40px_rgba(40,49,134,0.13)] transition-shadow duration-400"
-              style={{ width: 300, height: 460 }}
+              className="relative flex-shrink-0 overflow-hidden group"
+              style={{ width: 300, height: 460, boxShadow: "0 2px 24px rgba(0,0,0,0.5)" }}
             >
-              {/* Image area */}
+              {/* Image area — warm spotlight against dark card */}
               <div className="relative overflow-hidden" style={{ height: 340, background: "#e8ddd0" }}>
                 <Image
                   src={p.src}
@@ -82,32 +78,25 @@ export default function Productos() {
                   style={{ mixBlendMode: "multiply" }}
                   draggable={false}
                 />
-                {/* Category badge */}
                 <span className="absolute top-3 left-3 z-10 text-[9px] tracking-widest uppercase text-[#283186] bg-white/75 px-2.5 py-1">
                   {p.category}
                 </span>
-                {/* Number watermark */}
                 <span
                   className="absolute -bottom-2 right-3 select-none pointer-events-none leading-none"
-                  style={{
-                    fontFamily: "var(--font-bebas)",
-                    fontSize: "6.5rem",
-                    color: "rgba(40,49,134,0.07)",
-                  }}
+                  style={{ fontFamily: "var(--font-bebas)", fontSize: "6.5rem", color: "rgba(40,49,134,0.07)" }}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </div>
 
-              {/* Info area */}
+              {/* Info area — dark */}
               <div
-                className="relative flex flex-col justify-center gap-2.5 px-5 bg-white"
-                style={{ height: 120 }}
+                className="relative flex flex-col justify-center gap-2.5 px-5"
+                style={{ height: 120, background: "#141414" }}
               >
-                {/* Blue left accent */}
                 <div className="absolute left-0 top-5 bottom-5 w-[3px] bg-[#283186]" />
                 <h3
-                  className="text-[#0a0a0a] leading-none"
+                  className="text-white leading-none"
                   style={{ fontFamily: "var(--font-bebas)", fontSize: "1.75rem", letterSpacing: "0.01em" }}
                 >
                   {p.name}
@@ -117,7 +106,7 @@ export default function Productos() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="self-start inline-flex items-center gap-1.5 text-[#283186] text-[0.6rem] font-semibold tracking-[0.25em] uppercase hover:gap-3 transition-all duration-200"
+                  className="self-start inline-flex items-center gap-1.5 text-white/50 text-[0.6rem] font-semibold tracking-[0.25em] uppercase hover:text-white hover:gap-3 transition-all duration-200"
                 >
                   Consultar precio
                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -142,12 +131,18 @@ export default function Productos() {
           href="https://wa.me/584126406493"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 border border-[#0a0a0a]/20 text-[#555] px-8 py-4 text-sm tracking-widest uppercase hover:border-[#283186] hover:text-[#283186] transition-all duration-300"
+          className="cta-glass"
         >
-          Ver catálogo completo
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
+          <div className="cta-glass__bg" />
+          <div className="cta-glass__glow" />
+          <div className="cta-glass__inner">
+            <div className="cta-glass__icon">
+              <svg width="14" height="8" viewBox="0 0 18 10" fill="none">
+                <path d="M12 10C12 9.47 12.55 8.68 13.11 8.01C13.82 7.16 14.68 6.41 15.66 5.84C16.39 5.41 17.28 5 18 5M18 5C17.28 5 16.39 4.59 15.66 4.16C14.68 3.59 13.82 2.84 13.11 1.99C12.55 1.32 12 0.53 12 0M18 5L0 5" stroke="white" strokeWidth="1.5"/>
+              </svg>
+            </div>
+            <span>Ver catálogo completo</span>
+          </div>
         </a>
       </motion.div>
     </section>

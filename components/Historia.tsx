@@ -181,6 +181,7 @@ export default function Historia() {
                     fontSize:   "clamp(10rem, 22vw, 18rem)",
                     lineHeight: 1,
                     color:      "rgba(255,255,255,0.06)",
+                  textShadow: "0 0 80px rgba(40,49,134,0.4)",
                   }}
                 >
                   {String(i + 1).padStart(2, "0")}
