@@ -36,19 +36,24 @@ export default function Nosotros() {
   const textOp  = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
 
   return (
-    <section id="nosotros" ref={sectionRef} className="py-28 bg-[#f5f3ef]">
+    <section id="nosotros" ref={sectionRef} className="py-28 bg-[#0b0b0b]">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Stats bar */}
         <motion.div
-          className="grid grid-cols-3 gap-4 mb-24 border border-[#dbd9d3] p-8 bg-white"
+          className="grid grid-cols-3 gap-4 mb-24 p-8"
+          style={{ border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.03)" }}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
           {STATS.map((s, i) => (
-            <div key={s.label} className={`text-center ${i < 2 ? "border-r border-[#dbd9d3]" : ""}`}>
+            <div
+              key={s.label}
+              className="text-center"
+              style={i < 2 ? { borderRight: "1px solid rgba(255,255,255,0.08)" } : {}}
+            >
               <div
                 className="text-[#283186] mb-2"
                 style={{
@@ -59,7 +64,7 @@ export default function Nosotros() {
               >
                 {s.value}{s.suffix}
               </div>
-              <div className="text-[#888] text-xs tracking-widest uppercase">
+              <div className="text-xs tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
                 {s.label}
               </div>
             </div>
@@ -75,7 +80,7 @@ export default function Nosotros() {
               Quiénes somos
             </p>
             <h2
-              className="text-[#0a0a0a] leading-none mb-8"
+              className="text-white leading-none mb-8"
               style={{
                 fontFamily: "var(--font-bebas)",
                 fontSize: "clamp(2.5rem, 6vw, 5rem)",
@@ -84,13 +89,13 @@ export default function Nosotros() {
               Más de 70 años<br />
               <span className="text-[#283186]">sirviendo</span> a Venezuela
             </h2>
-            <p className="text-[#555] text-lg leading-relaxed mb-6">
+            <p className="text-lg leading-relaxed mb-6" style={{ color: "rgba(255,255,255,0.55)" }}>
               Somos una ferretería familiar venezolana con más de 70 años de historia.
-              Nacimos en Tobar con el sueño de nuestro bisabuelo, crecimos bajo el mando
+              Nacimos en Tovar con el sueño de nuestro bisabuelo, crecimos bajo el mando
               de nuestro abuelo, y hoy la tercera generación lleva ese mismo compromiso
               a Mérida.
             </p>
-            <p className="text-[#888] text-lg leading-relaxed mb-10">
+            <p className="text-lg leading-relaxed mb-10" style={{ color: "rgba(255,255,255,0.35)" }}>
               No somos solo una ferretería — somos el lugar donde los vecinos, los
               arquitectos y los constructores encuentran no solo los materiales que
               necesitan, sino también el consejo honesto de alguien que conoce el oficio.
@@ -109,7 +114,8 @@ export default function Nosotros() {
                 href="https://www.instagram.com/globalferreteria_"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-[#888] hover:text-[#0a0a0a] transition-colors text-sm group"
+                className="flex items-center gap-2 transition-colors text-sm group"
+                style={{ color: "rgba(255,255,255,0.4)" }}
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -133,7 +139,7 @@ export default function Nosotros() {
             className="relative"
           >
             <div
-              className="relative rounded-xl overflow-hidden"
+              className="relative overflow-hidden"
               style={{ height: 520 }}
             >
               <Image
@@ -142,18 +148,16 @@ export default function Nosotros() {
                 fill
                 className="object-cover"
               />
-              {/* Orange border frame */}
               <div
-                className="absolute inset-0 rounded-xl"
-                style={{
-                  boxShadow: "inset 0 0 0 2px #283186, 0 32px 64px rgba(40,49,134,0.2)",
-                }}
+                className="absolute inset-0"
+                style={{ boxShadow: "inset 0 0 0 2px #283186" }}
               />
             </div>
 
             {/* Floating info card */}
             <motion.div
-              className="absolute -bottom-6 -left-6 bg-white border border-[#dbd9d3] p-6 max-w-[240px]"
+              className="absolute -bottom-6 -left-6 p-6 max-w-[240px]"
+              style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.08)" }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -165,7 +169,7 @@ export default function Nosotros() {
               >
                 Desde 1950
               </div>
-              <div className="text-[#888] text-xs leading-relaxed">
+              <div className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.4)" }}>
                 Tres generaciones. Un mismo compromiso.
               </div>
             </motion.div>

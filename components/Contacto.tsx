@@ -29,11 +29,11 @@ const SOCIALS = [
 
 export default function Contacto() {
   return (
-    <section id="contacto" className="bg-[#f5f3ef]">
+    <section id="contacto" className="bg-[#0b0b0b]">
       <div className="grid md:grid-cols-2" style={{ minHeight: 600 }}>
 
         {/* ── Map ── */}
-        <div className="relative h-[380px] md:h-auto">
+        <div className="relative h-[380px] md:h-auto" style={{ filter: "grayscale(1) invert(1) brightness(0.85)" }}>
           <iframe
             src="https://maps.google.com/maps?q=8.594765150188552,-71.14858023037915&z=17&output=embed&hl=es"
             width="100%"
@@ -49,7 +49,8 @@ export default function Contacto() {
 
         {/* ── Info ── */}
         <motion.div
-          className="flex flex-col justify-center px-10 md:px-16 py-20 bg-white"
+          className="flex flex-col justify-center px-10 md:px-16 py-20"
+          style={{ background: "#0f0f0f" }}
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -59,20 +60,24 @@ export default function Contacto() {
             Contacto
           </p>
           <h2
-            className="text-[#0a0a0a] leading-none mb-12"
+            className="text-white leading-none mb-12"
             style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(3rem, 5vw, 5rem)" }}
           >
             Visítanos o<br />escríbenos.
           </h2>
 
           {/* Info rows */}
-          <div className="divide-y divide-[#e8e6e0] mb-8">
+          <div className="mb-8" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
             {INFO.map((item) => (
-              <div key={item.label} className="py-4 flex gap-6">
-                <span className="text-[#0a0a0a] text-sm font-semibold w-24 flex-shrink-0">
+              <div
+                key={item.label}
+                className="py-4 flex gap-6"
+                style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}
+              >
+                <span className="text-white text-sm font-semibold w-24 flex-shrink-0">
                   {item.label}
                 </span>
-                <span className="text-[#777] text-sm leading-relaxed">
+                <span className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
                   {item.value}
                   {item.link && (
                     <>
