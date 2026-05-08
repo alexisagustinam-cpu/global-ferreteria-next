@@ -21,6 +21,17 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${bebasNeue.variable} dark`}>
+      <head>
+        <link
+          rel="preconnect"
+          href="https://api.fontshare.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,800,900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="bg-dark text-white antialiased overflow-x-hidden">
         {children}
       </body>
