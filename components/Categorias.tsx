@@ -37,8 +37,13 @@ export default function Categorias() {
     <section id="categorias" className="py-24 bg-[#0a0a0a]">
 
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-6 mb-12">
-        <p className="text-[#283186] text-sm tracking-[0.3em] uppercase mb-3">Lo que ofrecemos</p>
+      <div className="px-6 md:px-14 mb-12">
+        <p
+          className="text-sm tracking-[0.3em] uppercase mb-3"
+          style={{ color: "rgba(255,255,255,0.38)", fontFamily: "'Satoshi', sans-serif", fontWeight: 700 }}
+        >
+          Lo que ofrecemos
+        </p>
         <h2
           className="text-white leading-none"
           style={{ fontFamily: "var(--font-bebas)", fontSize: "clamp(3rem, 6vw, 5rem)" }}
@@ -59,7 +64,7 @@ export default function Categorias() {
                 onClick={() => setOpen(isOpen ? null : i)}
                 className="w-full flex items-center justify-between text-left"
                 style={{
-                  padding: "1.5rem 1.5rem 1.5rem max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem))",
+                  padding: "1.5rem 1.5rem 1.5rem clamp(1.5rem, 3.5vw, 3.5rem)",
                   background: "transparent",
                   border: "none",
                   cursor: "pointer",
@@ -145,8 +150,8 @@ export default function Categorias() {
                     >
                       {/* Left: description + CTA */}
                       <div
-                        className="flex flex-col justify-center gap-6 px-6 md:px-16 py-10"
-                        style={{ paddingLeft: "max(1.5rem, calc((100vw - 80rem) / 2 + 1.5rem))" }}
+                        className="flex flex-col justify-center gap-6 py-10"
+                        style={{ paddingLeft: "clamp(1.5rem, 3.5vw, 3.5rem)", paddingRight: "2rem" }}
                       >
                         <p
                           className="text-lg leading-relaxed max-w-md"
